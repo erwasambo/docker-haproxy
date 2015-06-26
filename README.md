@@ -1,7 +1,7 @@
 # HAProxy Load Balancer 
 [![Circle CI](https://circleci.com/gh/million12/docker-haproxy/tree/master.svg?style=svg)](https://circleci.com/gh/million12/docker-haproxy/tree/master)
 
-This is a [million12/haproxy](https://registry.hub.docker.com/u/million12/haproxy/) docker container with HAProxy load balancer. This work is very similar to official [dockerfile/haproxy](https://registry.hub.docker.com/u/dockerfile/haproxy/), but it's based on CentOS-7 and, more importantly, offers ability to provide any arguments to haproxy process. It's also pretty lightweight, only ~240M (vs. ~420M Ubuntu-based dockerfile/haproxy).
+This is a [erwasambo/docker-haproxy](https://registry.hub.docker.com/u/million12/haproxy/) docker container with HAProxy load balancer. This work is very similar to official [dockerfile/haproxy](https://registry.hub.docker.com/u/dockerfile/haproxy/), but it's based on CentOS-7 and, more importantly, offers ability to provide any arguments to haproxy process. It's also pretty lightweight, only ~240M (vs. ~420M Ubuntu-based dockerfile/haproxy).
 
 This container is built that any extra parameters provided to `docker run` will be passed directly to `haproxy` command. For example, if you run `docker run [run options] million12/haproxy -n 1000` you pass `-n 1000` to haproxy daemon.
 
@@ -22,16 +22,20 @@ If you mount your config to different location, simply edit it.
 
 ### Basic
 
-`docker run -ti -p 80:80 -p 443:443 million12/haproxy`
+`docker run -ti -p 80:80 -p 443:443 erwasambo/docker-haproxy`
 
 ### Mount custom config , override some options
 
-`docker run -d -p 80:80 -v /my-haproxy.cfg:/etc/haproxy/haproxy.cfg million12/haproxy -n 10000`  
+`docker run -d -p 80:80 -v /my-haproxy.cfg:/etc/haproxy/haproxy.cfg erwasambo/docker-haproxy -n 10000`  
 Note: in this case config is mounted to its default location, so you don't need to modify `HAPROXY_CONFIG` variable.
 
 ### Check version and build options
 
-`docker run -ti million12/haproxy -vv`
+`docker run -ti erwasambo/docker-haproxy -vv`
+
+or
+
+`docker run -p 80:80 -p 443:443 erwasambo/docker-haprox`
 
 ### Stats
 The default URL for stats is `http://CONTAINER_IP/admin?stats` with username:password ser to `admin:admin`.
